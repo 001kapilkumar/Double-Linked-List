@@ -1,0 +1,61 @@
+public class Binary_Tree_To_Double_Linked_List {
+    static class Node{
+        int data ;
+        Node right ;
+        Node left ;
+        Node(int d){
+            data = d ;
+            right = null ;
+            left = null ;
+
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public Node root = null ;
+    public void Binary_Tree_To_Double_Linked_List(Node node){
+        if(node == null)
+            return;
+
+
+        Binary_Tree_To_Double_Linked_List(node.left);
+        if(head == null){
+            head = node ;
+            tail = node ;
+        }
+        else{
+            tail.right = node ;
+            node.left = tail ;
+            tail = node ;
+        }
+        Binary_Tree_To_Double_Linked_List(node.right);
+
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Linked List be empty");
+        }
+        else{
+            while(current != null){
+                System.out.print(current.data + " ");
+                current = current.right ;
+            }
+        }
+    }
+    public static void main(String [] args){
+        Binary_Tree_To_Double_Linked_List list = new Binary_Tree_To_Double_Linked_List() ;
+        list.root = new Node(1);
+        list.root.left = new Node(2) ;
+        list.root.left.left = new Node(4);
+        list.root.left.right = new Node(5);
+        list.root.right = new Node(3);
+        list.root.right.left = new Node(6);
+        list.root.right.right = new Node(7);
+        list.Binary_Tree_To_Double_Linked_List(list.root);
+
+        System.out.println("Double Linked List element be ");
+        list.element_Display();
+
+    }
+}
