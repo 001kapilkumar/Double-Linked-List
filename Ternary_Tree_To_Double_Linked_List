@@ -1,0 +1,72 @@
+public class Ternary_Tree_To_Double_Linked_List {
+    static class Node{
+        int data ;
+        Node left ;
+        Node middle ;
+        Node right ;
+        Node(int d){
+            data = d ;
+
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public Node root = null ;
+    public void Ternary_Tree_To_Double_Linked_List(Node node){
+        if(node == null){
+            return ;
+        }
+        Node left = node.left ;
+        Node right = node.right ;
+        Node middle = node.middle ;
+        if(head == null){
+            head = node ;
+            tail = node ;
+
+        }
+        else{
+            tail.right = node ;
+            node.left = tail ;
+            tail = node ;
+        }
+        Ternary_Tree_To_Double_Linked_List(left);
+        Ternary_Tree_To_Double_Linked_List(middle);
+        Ternary_Tree_To_Double_Linked_List(right);
+
+
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty ");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data);
+                current = current.right ;
+            }
+        }
+
+    }
+    public static void main(String [] args){
+        Ternary_Tree_To_Double_Linked_List list = new Ternary_Tree_To_Double_Linked_List();
+        list.root = new Node(5);
+        list.root.left = new Node(10);
+        list.root.middle = new Node(12);
+        list.root.right = new Node(15);
+        list.root.left.left = new Node(20);
+        list.root.left.middle = new Node(40);
+        list.root.left.right = new Node(50);
+        list.root.middle.left = new Node(24);
+        list.root.middle.middle = new Node(36);
+        list.root.middle.right = new Node(48);
+        list.root.right.left = new Node(30);
+        list.root.right.middle = new Node(45);
+        list.root.right.right = new Node(60) ;
+
+        System.out.println("Double Linked List be ");
+        list.Ternary_Tree_To_Double_Linked_List(list.root);
+        list.element_Display();
+
+    }
+}
