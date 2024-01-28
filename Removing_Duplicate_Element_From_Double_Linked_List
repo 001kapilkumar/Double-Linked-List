@@ -1,0 +1,83 @@
+public class Removing_Duplicate_Element_From_Double_Linked_List {
+    static class Node{
+        int data ;
+        Node left ;
+        Node right ;
+        Node(int d){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Element(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+        }
+    }
+    public void remove_Duplicate_Elements(){
+        Node current = head ;
+        Node temp = null ;
+
+        while(current != tail){
+            temp = current ;
+
+            Node index = current.right ;
+            while(index != null) {
+                if(current.data == index.data){
+                    if(index==tail){
+                        temp.right = null ;
+                        tail = temp ;
+
+                    }
+                    else {
+                        temp.right = index.right;
+                        index.right.left = temp;
+                    }
+
+                }
+                else{
+                    temp = index ;
+                }
+                index = index.right ;
+
+            }
+            current = current.right;
+
+        }
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked be empty");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data);
+                current = current.right ;
+            }
+        }
+    }
+    public static void main(String [] args){
+        Removing_Duplicate_Element_From_Double_Linked_List list = new Removing_Duplicate_Element_From_Double_Linked_List();
+        list.add_Element(100);
+        list.add_Element(10);
+        list.add_Element(170);
+        list.add_Element(10);
+        list.add_Element(170);
+        list.add_Element(80);
+        list.add_Element(170);
+        System.out.println("Original elements of Double Linked List be ");
+        list.element_Display();
+        System.out.println("Removing duplicate elements from double linked list ");
+        list.remove_Duplicate_Elements();
+        list.element_Display();
+
+    }
+}
