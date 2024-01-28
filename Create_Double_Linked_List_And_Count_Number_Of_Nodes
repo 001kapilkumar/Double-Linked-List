@@ -1,0 +1,67 @@
+public class Create_Double_Linked_List_And_Count_Number_Of_Nodes {
+    static class Node{
+        int data ;
+        Node left ;
+        Node right ;
+        Node(int d){
+            data = d ;
+            left = null ;
+            right = null ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Double_Linked_List_Elements(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+        }
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data);
+                current = current.right;
+            }
+        }
+    }
+    int length = 0 ;
+    public int count_Elements_Of_Double_Linked_List(){
+        Node current = head ;
+        if(head == null){
+            return 0 ;
+        }
+        else{
+            while(current != null){
+                length++ ;
+                current = current.right;
+
+            }
+
+        }
+        return length ;
+    }
+    public static void main(String [] args){
+        Create_Double_Linked_List_And_Count_Number_Of_Nodes list = new Create_Double_Linked_List_And_Count_Number_Of_Nodes() ;
+          list.add_Double_Linked_List_Elements(10);
+          list.add_Double_Linked_List_Elements(20);
+          list.add_Double_Linked_List_Elements(30);
+          list.add_Double_Linked_List_Elements(40);
+          list.add_Double_Linked_List_Elements(50);
+        System.out.println("Elements of Double Linked List be ");
+        list.element_Display();
+       int count =  list.count_Elements_Of_Double_Linked_List() ;
+       System.out.println("Number of elements in Double Linked List be "+count);
+
+    }
+}
