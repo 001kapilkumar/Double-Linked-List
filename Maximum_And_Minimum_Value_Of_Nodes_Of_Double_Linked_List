@@ -1,0 +1,67 @@
+public class Maximum_And_Minimum_Value_Of_Nodes_Of_Double_Linked_List {
+    static class Node{
+        int data ;
+        Node left ;
+        Node right ;
+        Node(int d ){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Element(int data){
+        Node newNode = new Node (data) ;
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+        }
+
+    }
+    public void Maximum_And_Minimum_Element(){
+        int max  = head.data ;
+        int min = head.data ;
+        Node current = head ;
+        while(current != null){
+            if(max<current.data){
+                max = current.data ;
+            }
+             if(min> current.data){
+                 min = current.data ;
+
+            }
+             current = current.right ;
+
+        }
+        System.out.println("Maximum element of Double Linked List be "+ max);
+        System.out.println("Minimum element of Double Linked List be " + min);
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty ");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data);
+                current = current.right ;
+            }
+        }
+    }
+    public static void main(String [] args){
+        Maximum_And_Minimum_Value_Of_Nodes_Of_Double_Linked_List list = new Maximum_And_Minimum_Value_Of_Nodes_Of_Double_Linked_List();
+        list.add_Element(100);
+        list.add_Element(20);
+        list.add_Element(30);
+        list.add_Element(4);
+        list.add_Element(50);
+        System.out.println("Original elements of Double Linked List be ") ;
+        list.element_Display();
+        list.Maximum_And_Minimum_Element();
+
+    }
+}
