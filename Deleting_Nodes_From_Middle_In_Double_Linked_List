@@ -1,0 +1,81 @@
+public class Deleting_Nodes_From_Middle_In_Double_Linked_List {
+    static class Node{
+        int data ;
+        Node right ;
+        Node left ;
+        Node(int d ){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    int size = 0 ;
+    public void add_Element(int data){
+        Node newNode = new Node(data) ;
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+        }
+        size++ ;
+    }
+    public void element_Deletion_From_Middle(){
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else if(head == tail){
+            head = null ;
+            tail = null ;
+        }
+        else {
+            if (head.right == tail) {
+                tail.left = null ;
+                head = tail ;
+
+            }
+            else {
+                int mid = (size % 2 == 0) ? (size / 2) : ((size + 1) / 2);
+                Node current = head;
+                Node temp = null;
+                while (mid != 1) {
+                    mid--;
+                    temp = current;
+                    current = current.right;
+                }
+                //System.out.println("Element before mid one be " + temp.data);
+                //  System.out.println("Mid element be " + current.data);
+                temp.right = current.right;
+            }
+        }
+        size -- ;
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty ");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data);
+                current = current.right ;
+            }
+        }
+    }
+    public static void main(String [] args){
+        Deleting_Nodes_From_Middle_In_Double_Linked_List  list = new Deleting_Nodes_From_Middle_In_Double_Linked_List();
+        list.add_Element(10);
+        list.add_Element(20);
+        list.add_Element(30);
+        list.add_Element(40);
+        list.add_Element(50);
+        System.out.println("Original elements of Linked List be ");
+        list.element_Display();
+        while(list.head != null) {
+            System.out.println("Elements after deletion from middle be ");
+            list.element_Deletion_From_Middle();
+            list.element_Display();
+        }
