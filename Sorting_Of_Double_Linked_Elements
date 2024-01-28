@@ -1,0 +1,66 @@
+public class Sorting_Of_Double_Linked_Elements {
+    static class Node{
+        int data ;
+        Node left = null ;
+        Node right = null ;
+        Node(int d ){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Elements(int data){
+        Node newNode = new Node(data) ;
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+
+        }
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data) ;
+                current = current.right ;
+            }
+        }
+    }
+    public void element_Sorting(){
+        Node current = head ;
+        while(current != tail){
+            Node temp = current.right ;
+            while(temp != null){
+                if(current.data > temp.data){
+                    int data = current.data ;
+                    current.data = temp.data ;
+                    temp.data =  data ;
+                }
+                temp = temp.right ;
+            }
+          //  System.out.println(current.data);
+            current = current.right ;
+        }
+    }
+    public static void main(String [] args){
+        Sorting_Of_Double_Linked_Elements list = new Sorting_Of_Double_Linked_Elements() ;
+        list.add_Elements(3);
+        list.add_Elements(7989);
+        list.add_Elements(2);
+        list.add_Elements(1);
+        System.out.println("Original elements of Double Linked List be ");
+        list.element_Display();
+        System.out.println("Sorted elements be ");
+        list.element_Sorting();
+        list.element_Display();
+
+    }
+}
