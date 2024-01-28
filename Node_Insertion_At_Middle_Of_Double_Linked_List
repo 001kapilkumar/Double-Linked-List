@@ -1,0 +1,91 @@
+public class Node_Insertion_At_Middle_Of_Double_Linked_List {
+    static class Node{
+        int data ;
+        Node left ;
+        Node right ;
+        Node(int d){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    int size = 0 ;
+    public void add_Element(int data){
+        Node newNode = new Node(data) ;
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+        }
+        size ++ ;
+    }
+    public void element_insertion_At_Middle(int d) {
+        Node newNode = new Node(d);
+        if (head == tail) {
+            head.right = newNode;
+            newNode.left = head;
+            tail = newNode;
+        } else {
+            int mid = (size % 2 == 0) ? (size / 2) : ((size + 1) / 2);
+            Node current = head;
+            Node temp = null;
+            while (mid != 1) {
+                mid--;
+
+                current = current.right;
+
+            }
+            temp = current.right;
+           // System.out.println("Element before mid one be " + temp.data);
+           // System.out.println(" Mid element be " + current.data);
+            current.right = newNode;
+            newNode.left = current;
+            newNode.right = temp;
+            temp.left = newNode;
+
+
+        }
+        size++ ;
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Doubkle Linked List be empty");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data);
+                current = current.right ;
+            }
+        }
+    }
+    public static void main(String [] args){
+        Node_Insertion_At_Middle_Of_Double_Linked_List list = new Node_Insertion_At_Middle_Of_Double_Linked_List();
+        list.add_Element(10);
+        list.add_Element(20);
+        list.add_Element(30);
+        list.add_Element(40);
+       list.add_Element(50);
+       list.add_Element(60);
+        list.add_Element(50);
+        System.out.println("Original elements of Double Linked List be ");
+        list.element_Display();
+        System.out.println("Element after insertion at middle be ");
+        list.element_insertion_At_Middle(8);
+        list.element_Display();
+
+        System.out.println("Element after insertion at middle be ");
+        list.element_insertion_At_Middle(180);
+        list.element_Display();
+        System.out.println("Element after insertion at middle be ");
+        list.element_insertion_At_Middle(200);
+        list.element_Display();
+
+
+    }
+}
