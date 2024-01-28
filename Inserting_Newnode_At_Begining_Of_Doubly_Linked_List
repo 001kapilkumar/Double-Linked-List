@@ -1,0 +1,69 @@
+public class Inserting_Newnode_At_Begining_Of_Doubly_Linked_List {
+    static class Node {
+        int data ;
+        Node left ;
+        Node right ;
+        Node(int d ){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail  = null ;
+    public void add_Element(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode ;
+              tail = newNode ;
+
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+        }
+    }
+    public void inserting_new_element_At_Begining(int d){
+        Node newNode = new Node(d);
+        head.left = newNode ;
+        newNode.right = head ;
+        head = newNode ;
+
+
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data);
+                current = current.right ;
+            }
+        }
+    }
+    public static void main(String [] args){
+        Inserting_Newnode_At_Begining_Of_Doubly_Linked_List list = new Inserting_Newnode_At_Begining_Of_Doubly_Linked_List();
+        list.add_Element(10);
+        list.add_Element(20);
+        list.add_Element(30);
+        list.add_Element(40);
+        list.add_Element(50);
+        System.out.println("Original elements of double linked list be ") ;
+        list.element_Display();
+        System.out.println("Elements of Double Linked List after insertion at begining") ;
+        list.inserting_new_element_At_Begining(1);
+        list.element_Display();
+        System.out.println("Elements of Double Linked List after insertion at begining") ;
+        list.inserting_new_element_At_Begining(2);
+        list.element_Display();
+        System.out.println("Elements of Double Linked List after insertion at begining") ;
+        list.inserting_new_element_At_Begining(3);
+        list.element_Display();
+        System.out.println("Elements of Double Linked List after insertion at begining") ;
+        list.inserting_new_element_At_Begining(4);
+        list.element_Display();
+
+
+    }
+}
