@@ -1,0 +1,78 @@
+public class Deleting_Elements_From_End_In_Double_Linked_List {
+    static class Node{
+        int data ;
+        Node left ;
+        Node right ;
+        Node(int d ){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+
+    public void add_Elements(int data){
+        Node newNode = new Node(data) ;
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+        }
+    }
+    public void element_Deletion_From_End(){
+        Node current = tail ;
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else if(head == tail){
+            head = null ;
+            tail = null ;
+        }
+        else{
+            if(head.right == tail){
+                head.right = null ;
+                tail = head ;
+
+            }
+            else{
+                tail.left.right   = null ;
+                tail = tail.left ;
+            }
+        }
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data);
+                current = current.right ;
+            }
+        }
+    }
+    public static void main(String [] args){
+        Deleting_Elements_From_End_In_Double_Linked_List list = new Deleting_Elements_From_End_In_Double_Linked_List() ;
+        list.add_Elements(10);
+        list.add_Elements(20);
+        list.add_Elements(30);
+        list.add_Elements(40);
+        list.add_Elements(50);
+        System.out.println(" Original elements of Double Linked List ") ;
+        list.element_Display();
+        int count = 1;
+        while(list.head != null) {
+            System.out.println("Elements after "+ count + " deletion from end ");
+            count++  ;
+            list.element_Deletion_From_End();
+            list.element_Display();
+        }
+
+
+
+    }
+}
