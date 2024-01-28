@@ -1,0 +1,72 @@
+public class Rotating_Double_Linked_List {
+    static class Node{
+        int data ;
+        Node left ;
+        Node right ;
+        Node(int d ){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    int size = 0;
+    public void add_Elements(int data){
+        Node newNode = new Node(data) ;
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+        }
+        size ++ ;
+
+    }
+    public void list_Rotation(int d ){
+        Node r = new Node(d);
+        Node search = head ;
+
+
+        while(tail.data != d  ){
+            Node current = tail ;
+            int last = tail.data ;
+            while(current.left != null) {
+                current.data = current.left.data;
+                current = current.left ;
+            }
+            head.data = last ;
+        }
+
+
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else{
+            while(current != null){
+                System.out.print(current.data + " ") ;
+                current = current.right ;
+            }
+        }
+    }
+    public static void main(String [] args){
+        Rotating_Double_Linked_List list = new Rotating_Double_Linked_List();
+        list.add_Elements(1);
+        list.add_Elements(2);
+        list.add_Elements(3);
+        list.add_Elements(4);
+        list.add_Elements(5);
+        System.out.println("Original elements of Double Linked list be ");
+        list.element_Display();
+        System.out.println() ;
+        System.out.println("Elements after rotation ");
+        list.list_Rotation(3);
+        list.element_Display();
+
+
+    }
+}
