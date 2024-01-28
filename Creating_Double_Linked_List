@@ -1,0 +1,48 @@
+public class Creating_Double_Linked_List {
+    static class Node{
+        int data ;
+        Node left ;
+        Node right;
+        Node(int d ){
+            data = d ;
+
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_elements_to_Double_Linked_List(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head  = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+        }
+
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data);
+                current = current.right ;
+            }
+        }
+    }
+    public static void main(String [] args){
+        Creating_Double_Linked_List list = new Creating_Double_Linked_List();
+        list.add_elements_to_Double_Linked_List(10);
+        list.add_elements_to_Double_Linked_List(20);
+        list.add_elements_to_Double_Linked_List(30);
+        list.add_elements_to_Double_Linked_List(40);
+        System.out.println("Nodes Of Double Linked List be ");
+        list.element_Display();
+
+    }
+}
