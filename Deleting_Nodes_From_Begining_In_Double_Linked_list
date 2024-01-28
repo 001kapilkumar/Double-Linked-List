@@ -1,0 +1,79 @@
+public class Deleting_Nodes_From_Begining_In_Double_Linked_list {
+    static class Node{
+        int data ;
+        Node left ;
+        Node right ;
+        Node(int d ){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Elements_To_Double_Linked_List(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+
+        }
+    }
+    public void Deleting_Element_From_Begining(){
+        Node current = head ;
+        Node temp = current.right ;
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else if(head == tail){
+            head = null ;
+            tail = null ;
+        }
+        else{
+            if(head.right == tail){
+                tail.left = null ;
+                head.right = null ;
+                head = tail ;
+
+            }
+            else{
+                temp.left = null ;
+
+                head = temp ;
+
+            }
+        }
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data);
+                current = current.right ;
+            }
+        }
+    }
+    public static void main(String [] args){
+        Deleting_Nodes_From_Begining_In_Double_Linked_list list = new Deleting_Nodes_From_Begining_In_Double_Linked_list() ;
+        list.add_Elements_To_Double_Linked_List(10);
+        list.add_Elements_To_Double_Linked_List(20);
+        list.add_Elements_To_Double_Linked_List(30);
+        list.add_Elements_To_Double_Linked_List(40);
+        list.add_Elements_To_Double_Linked_List(50);
+        System.out.println("Original elements of Double Linked List be ") ;
+        list.element_Display();
+        while(list.head != null) {
+            System.out.println("Double Linked List after removing elements from begining ");
+            list.Deleting_Element_From_Begining();
+            list.element_Display();
+        }
+       
+
+    }
+}
