@@ -1,0 +1,72 @@
+public class Search_An_Element_In_Double_Linked_List {
+    static class Node{
+        int data ;
+        Node left ;
+        Node right ;
+        Node(int d){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Elements(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+        }
+
+
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else{
+            while(current != null){
+                System.out.print(current.data + " ") ;
+                current = current.right ;
+            }
+        }
+    }
+
+    public void Search_Element(int d){
+        //Node search = new Node(d);
+        int index = 0;
+        int present = 0 ;
+        Node current = head ;
+        while(current != null){
+            if(current.data == d){
+                present = 1 ;
+                System.out.println("Element "+d+" present at index " + index);
+            }
+            index++ ;
+            current = current.right ;
+        }
+        if(present == 0){
+            System.out.println("Element "+d+" does not present in Double Linked List");
+        }
+
+    }
+    public static void main(String [] args){
+        Search_An_Element_In_Double_Linked_List list = new Search_An_Element_In_Double_Linked_List();
+        list.add_Elements(10);
+        list.add_Elements(20);
+        list.add_Elements(30);
+        list.add_Elements(40);
+        list.add_Elements(50);
+        System.out.println("Original Elements Of Double Linked List be ");
+        list.element_Display();
+        System.out.println();
+        list.Search_Element(50);
+        list.Search_Element(10);
+        list.Search_Element(60);
+
+    }
+}
