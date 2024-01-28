@@ -1,0 +1,79 @@
+public class Reverse_Order_Of_Double_Linked_List {
+    static class Node{
+        int data ;
+        Node left ;
+        Node right ;
+        Node (int d ){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Elements_In_Double_Linked_List(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.right = newNode ;
+            newNode.left = tail ;
+            tail = newNode ;
+        }
+
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else{
+            while(current != null){
+                System.out.println(current.data);
+                current = current.right ;
+            }
+        }
+    }
+    public void Reverse_Order_Of_Double_Linked_List(Node node){
+       // Node current = node ;
+
+        if(head == null){
+            System.out.println("Double Linked List be empty");
+        }
+        else{
+            while(node.right != null){
+
+                node = node.right ;
+            }
+            System.out.println(node.data) ;
+
+            while(node.left != null){
+                node = node.left ;
+                System.out.println(node.data);
+
+            }
+
+        }
+
+
+    }
+    public static void main(String [] args){
+        Reverse_Order_Of_Double_Linked_List list = new Reverse_Order_Of_Double_Linked_List();
+
+        list.add_Elements_In_Double_Linked_List(10);
+
+        list.add_Elements_In_Double_Linked_List(20);
+        
+        list.add_Elements_In_Double_Linked_List(30);
+        list.add_Elements_In_Double_Linked_List(40);
+        list.add_Elements_In_Double_Linked_List(50);
+        list.add_Elements_In_Double_Linked_List(60);
+
+         
+        System.out.println("Original elements of Double Linked List be ");
+        list.element_Display();
+        System.out.println("Reverse order of Double Linked List elements be ");
+        list.Reverse_Order_Of_Double_Linked_List(list.head);
+
+    }
+}
